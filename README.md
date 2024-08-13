@@ -24,7 +24,7 @@ To change the theme, you can change the `angular.json` file and change the `styl
 
 * Available themes:
 
-```json
+```bash
 primeng/resources/themes/bootstrap4-light-blue/theme.css
 primeng/resources/themes/bootstrap4-light-purple/theme.css
 primeng/resources/themes/bootstrap4-dark-blue/theme.css
