@@ -1,0 +1,34 @@
+name: Cypress E2E Tests
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+
+      - name: Clone cypress-angular-starter-with-cicd repository
+        run: git clone https://github.com/mwaiseghegift/cypress-angular-starter-with-cicd.git
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./cypress-angular-starter-with-cicd
+
+      - name: Build the application
+        run: npm run build
+        working-directory: ./cypress-angular-starter-with-cicd
+
+      - name: Start the application
+        run: npm start &
+        working-directory: ./cypress-angular-starter-with-cicd
+
+      - name: Wait for the application to be ready
+        run: npx wait-on http://localhost:4200
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./cypress-angular-starter-with-cicd
+          browser: chrome
